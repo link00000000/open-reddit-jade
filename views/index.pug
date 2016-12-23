@@ -1,0 +1,80 @@
+extends layout.pug
+
+block head
+  title Open Reddit
+  link(rel="stylesheet" type="text/css" href="/css/index.css")
+
+block body
+  if showToken
+    #modal-overlay
+      #modal
+        #modal-wrapper
+          #modal-text
+        #actions
+          .ion-android-mail(onclick="createMailto()")
+          .ion-ios-copy(onclick="copyToken()")
+
+    script.
+      document.getElementById('modal-text').innerHTML = JSON.parse(localStorage.redditToken).access_token;
+      $('#modal-overlay').click(function() {
+        $('#modal-overlay').remove();
+      }).children().click(function() {
+        return false;
+      });
+
+  #top
+    #logged-in
+    #login-container
+      #login-cta Login
+      #logout-cta(onclick="logout()") Logout
+      #login-wrapper
+        #main
+          #login-title Login to Reddit
+          #divider
+          #content
+            | In order to use this site with your Reddit account, you will need to login via Reddit.com.
+            | You will then be redirected back to this website. This keeps your login safe and off of our servers.
+          form#normal_auth(method="POST" action="/normal_auth")
+            button(type="submit") Login through Reddit.com
+          button#token_auth-btn(onclick="changeMenu('token')") Login with token
+          form#get_token(method="POST" action="/get_token")
+            button(type="submit") Get a token
+          div#login-help
+            span(onclick="changeMenu('help')") Which one do I chose?
+        #token
+          .back-arrow.ion-ios-arrow-back
+          #login-title Login with Token
+          #divider
+          #content
+            | In order to use this site with your Reddit account, you will need to login via Reddit.com.
+            | You will then be redirected back to this website. This keeps your login safe and off of our servers.
+          form#token_auth(method="GET" action="/")
+            input(type="text" name="token" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false").text
+            label(name="token").text Token
+            button(type="submit") Login
+          form#login-help(method="POST" action="/get_token")
+            button(type="submit") Don't have a token?
+        #help
+          .back-arrow.ion-ios-arrow-back
+          #login-title Help
+          #divider
+          form#normal_auth(method="POST" action="/normal_auth")
+            button(type="submit") Login through Reddit.com
+          #content Normal login. Will work in most cases.
+          button#token_auth-btn(onclick="changeMenu('token')") Login with token
+          #content Uses token to login when the normal login does not work. Token must not be older than 1 hour.
+          form#get_token(method="POST" action="/get_token")
+            button(type="submit") Get a token
+          #content Gets token used to login from another machine. Kepp this token secret.
+
+    #title
+        #main Open Reddit
+        #divider
+        #sub Set Reddit free and browse unblocked.
+  //- #bottom
+  //-     form#search(action="/subreddit" method="POST")
+  //-         input#subreddit(type="text" name="subreddit" autocomplete="off" autocorret="off" autocapitalize="off")
+  //-         label Subreddit
+
+  //Scripts
+  script(src="/js/login.js")

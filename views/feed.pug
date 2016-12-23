@@ -1,0 +1,33 @@
+extends layout.pug
+
+block head
+  title= title
+  link(rel="stylesheet" type="text/css" href="/css/feed.css")
+
+block body
+  #top-bar
+    #show-subs.ion-android-arrow-dropdown
+    #logout-cta(onclick="logout()") Logout
+    #subs
+      ol#sub-list
+        each val in subs
+          li= val
+  #content-wrapper
+    #post-wrapper
+      each post in posts
+        table.post
+          tr
+            td.rating
+              .upvote
+              .score= post.score
+              .downvote
+                td.details
+                  p.title= post.title
+                  .info
+                    p.user= post.user
+                    p.time=post.time
+                  .favorite.ion-android-star-outline
+        .break
+
+
+  script(src="/js/feed.js")

@@ -1,0 +1,13 @@
+extends layout.pug
+
+block head
+  title Authorize
+
+block body
+  form(method="POST" action="/normal_auth")
+    button(type="submit") Authorize with Reddit
+  form(method="GET" action="/token_auth")
+    input(type="text" placeholder="Token" name="token")
+    button(type="submit") Authorize with Token
+  form(method="POST" action="/get_token")
+    button(type="submit") Get Token

@@ -1,0 +1,184 @@
+@import 'vars'
+
+body
+  background-color: $primary-color
+
+#top-bar
+  background-color: $secondary-color
+  color: $primary-font
+  padding: 16px
+  cursor: pointer
+  box-shadow: 0 -3px 20px 0px black
+  position: relative
+  z-index: 500
+
+  #show-subs
+    font-size: 32px
+    float: left
+    transition: transform 200ms
+
+    &.hide
+      transform: rotate(180deg)
+      transition: transform 200ms
+
+  &:hover #show-subs
+    color: $primary-color
+
+  #subs
+    font:
+      size: 32px
+      family: 'Montserrat'
+    height: 36px
+    margin: auto
+    overflow: hidden
+    user-select: none
+    transition: height 200ms
+
+    &.hide
+      height: auto
+      transition: height 200ms
+
+      #sub-list li:hover
+        background: darken($secondary-color, 20)
+        border-radius: 2px
+
+    #sub-list
+      margin: 0
+      padding: 0
+      list-style: none
+      text-align: center
+
+  #logout-cta
+    width: 110px
+    height: 35px
+    background-color: $primary-color
+    color: $secondary-color
+    line-height: 35px
+    text-align: center
+    font:
+      size: 14px
+      family: 'Montserrat'
+    cursor: pointer
+    border:
+      left: 3px solid darken($primary-color, 5)
+      bottom: 3px solid darken($primary-color, 5)
+    user-select: none
+    float: right
+
+    &:hover
+      background-color: lighten($primary-color, 5)
+
+#content-wrapper
+  overflow-y: scroll
+  height: calc(100vh - 68px)
+  position: fixed
+  top: 68px
+
+#post-wrapper
+  width: 90%
+  margin: auto
+  background-color: $secondary-color
+
+  .post
+    padding: 5px
+
+    .rating
+      width: 50px
+      transform: scale(.7)
+
+      .upvote
+        width: 0
+        height: 0
+        border-left: 20px solid transparent
+        border-right: 20px solid transparent
+        border-bottom: 50px solid darken($secondary-color, 20)
+        cursor: pointer
+        margin: 5px
+
+        &:hover
+          border-bottom: 50px solid $upvote-color
+
+      .score
+        cursor: default
+        font:
+          size: 16px
+          family: 'Montserrat'
+        text-align: center
+
+      .downvote
+        width: 0
+        height: 0
+        border-left: 20px solid transparent
+        border-right: 20px solid transparent
+        border-top: 50px solid darken($secondary-color, 20)
+        cursor: pointer
+        margin: 5px
+
+        &:hover
+          border-top: 50px solid $downvote-color
+
+      &.upvoted .upvote
+        border-bottom: 50px solid $upvote-color
+
+      &.downvoted .downvote
+        border-top: 50px solid $downvote-color
+
+
+
+    .details
+      height: 96px
+      width: 100%
+      vertical-align: top
+      padding-left: 8px
+      position: relative
+
+      .title
+        font:
+          family: 'Montserrat'
+          size: 16px
+        color: $primary-font
+        cursor: pointer
+        margin-bottom: 64px
+
+        &:hover
+          color: lighten($primary-font, 20)
+
+      .info
+        position: absolute
+        bottom: 0
+
+        .user, .time
+          font:
+            family: 'Montserrat'
+            size: 14px
+          color: $secondary-font
+          margin: 5px 0
+          cursor: pointer
+
+          &:hover
+            color: lighten($secondary-font, 20)
+
+      .favorite
+        font-size: 22px
+        position: absolute
+        right: 5px
+        bottom: 5px
+        cursor: pointer
+
+        &.ion-android-star-outline
+          color: $secondary-font
+
+          &:hover
+            color: lighten($secondary-font, 20)
+
+        &.ion-android-star
+          color: $favorite-color
+
+          &:hover
+            color: lighten($favorite-color, 20)
+
+
+  .break
+    width: 100%
+    height: 1px
+    background-color: darken($secondary-color, 20)

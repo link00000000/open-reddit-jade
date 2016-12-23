@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet" type="text/css" href="/css/dist/ionicons/ionicons.css")
+    link(rel="stylesheet" type="text/css" href="/css/dist/normalize.css")
+    block head
+  body
+    script(src="/js/dist/jquery-3.1.1.min.js")
+    script(src="/socket.io/socket.io.js")
+    script.
+      var socket = io.connect();
+      var token = localStorage.redditToken;
+      if(localStorage.redditToken) {
+        socket.emit('identity', token);
+      }
+
+      socket.on('identity', function(data) {
+        console.log('SocketIO Request - Identity');
+        $('#logged-in').text('Currently logged in as: ' + JSON.parse(data).name);
+      });
+    block body

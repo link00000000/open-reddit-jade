@@ -1,0 +1,308 @@
+﻿@import 'vars'
+
+*::selection
+  background-color: lighten($primary-color, 20)
+  color: white
+
+body
+  background-color: $primary-color
+
+#login-container
+  z-index: 999999
+  position: absolute
+  top: 16px
+  right: 16px
+
+  #login-cta, #logout-cta
+    width: 110px
+    height: 35px
+    background-color: $primary-color
+    color: $secondary-color
+    line-height: 35px
+    text-align: center
+    font:
+      size: 14px
+      family: 'Montserrat'
+    cursor: pointer
+    border:
+      left: 3px solid darken($primary-color, 5)
+      bottom: 3px solid darken($primary-color, 5)
+    user-select: none
+
+    &:hover
+      background-color: lighten($primary-color, 5)
+
+  #login-wrapper
+    display: none
+    width: 305px
+    height: 456px
+    padding: 16px
+    background-color: $secondary-color
+    box-shadow: 0px 0px 10px 0px lighten(black, 50)
+    position: absolute
+    right: 0
+    top: 60px
+    box-sizing: border-box
+
+    &::before, &::after
+      content: ''
+      background-color: $secondary-color
+      width: 18px
+      height: 18px
+      position: absolute
+      top: -9px
+      right: 45px
+      transform: rotate(45deg)
+
+    &.transitioning::before
+      box-shadow: none
+
+    &::before
+      box-shadow: 0px 0px 10px 0px lighten(black, 50)
+      z-index: -500
+
+    & > div:not(#main)
+      display: none
+
+      #get_token
+        margin-top: 50px
+
+    #help
+      #get_token
+        margin-top: 0 !important
+      & > form, & > button
+        margin-top: 16px
+      #content
+        margin: 0 8px
+        font-size: 14px
+
+    .back-arrow
+      font-size: 18px
+      color: $primary-font
+      width: 20px
+      position: absolute
+      text-align: center
+      cursor: pointer
+
+      &:hover
+        color: $primary-color
+
+    #login-title
+      font:
+        family: 'Montserrat'
+        size: 18px
+      color: $primary-font
+      text-align: center
+      margin-top: 16px
+
+    #divider
+      width: 100%
+      height: 2px
+      background-color: $primary-color
+      margin-top: 8px
+
+    #content
+      margin: 16px 8px
+      font:
+        family: 'Montserrat'
+        size: 16px
+      color: $primary-font
+      line-height: 1.8em
+      text:
+        align: justify
+
+    form button, #token_auth-btn
+      width: 257px
+      height: 35px
+      background-color: $primary-color
+      color: $secondary-color
+      line-height: 35px
+      text-align: center
+      font:
+        size: 14px
+        family: 'Montserrat'
+      cursor: pointer
+      border:
+        left: 3px solid darken($primary-color, 5)
+        bottom: 3px solid darken($primary-color, 5)
+        top: none
+        right: none
+      margin: 4px 8px
+      user-select: none
+      outline: none
+
+      &:hover
+        background-color: lighten($primary-color, 5)
+
+    form input.text
+      outline: none
+      border: none
+      background-color: none
+      display: block
+      border-bottom: 2px solid $primary-color
+      width: 257px
+      margin: 1px auto
+      color: $primary-font
+      font:
+        family: 'Montserrat'
+        size: 14px
+
+    form label.text
+      display: block
+      font:
+        family: 'Montserrat'
+        size: 12px
+      color: $primary-color
+      margin-left: 12px
+
+    #login-help
+      width: 257px
+      margin-top: 8px
+
+      span, button
+        display: inline-block
+        text-align: right
+        font:
+          family: 'Montserrat'
+          size: 12px
+        color: $primary-font
+        cursor: pointer
+        float: right
+        background-color: transparent
+        line-height: normal
+        border: none
+        margin: 0
+        user-select: auto
+        width: auto
+        height: auto
+
+        &:hover
+          color: lighten($primary-font, 20)
+          background-color: transparent
+
+#modal-overlay
+  position: fixed
+  width: 100%
+  height: 100%
+  background-color: transparentize(black, .2)
+  z-index: 999999998
+
+  #modal
+    position: fixed
+    background-color: $secondary-color
+    padding: 50px
+    z-index: 999999999
+    box-shadow: 0px 0px 10px 0px lighten(black, 30)
+    border-radius: 2px
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
+
+    #modal-wrapper
+      background-color: darken($secondary-color, 10)
+      padding: 50px
+
+      #modal-text
+        color: $primary-font
+        text-align: center
+
+    #actions
+      font-size: 20px
+      margin-top: 5px
+      position: absolute
+      cursor: pointer
+      color: $primary-font
+
+      *
+        display: inline-block
+        width: 20px
+        height: 20px
+        text-align: center
+        vertical-align: center
+        margin: 2.5px
+
+      *:hover
+        color: $primary-color
+
+#top
+  width: 100%
+  height: 45vh
+  position: relative
+  background-color: $secondary-color
+
+  @media screen and (max-height: $break-small)
+    height: 100vh
+
+  #logged-in
+    color: $primary-font
+    font:
+      size: 12px
+      family: 'Montserrat'
+    position: absolute
+    top: 16px
+    left: 16px
+
+  #title
+    font:
+      size: 32px
+      family: 'Montserrat'
+    color: $primary-font
+    position: absolute
+    left: 50%
+    bottom: 50px
+    transform: translateX(-50%)
+    margin-top: 50px
+
+    @media screen and (max-height: $break-small)
+      bottom: 50%
+      transform: translate(-50%, 50%)
+
+    #main
+      width: 100%
+      text-align: center
+
+    #divider
+      width: 90px
+      height: 3px
+      background-color: $primary-color
+      margin: 20px auto
+
+    #sub
+      width: 100%
+      text-align: center
+      font-size: 16px
+      color: $secondary-font
+
+#bottom
+  width: 100%
+  position: relative
+
+  #search
+    margin: 50px auto
+    color: $secondary-color
+    display: inline-block
+    position: absolute
+    left: 50%
+    transform: translateX(-50%)
+    padding: 5px
+    font:
+      family: 'Montserrat'
+
+    #subreddit
+      font-size: 18px
+      background-color: transparent
+      border: none
+      border-bottom: 2px solid $secondary-color
+      color: $secondary-color
+      width: 150px
+      display: block
+      border-radius: 0
+
+      &:focus
+        outline: none
+
+    label
+      font-size: 14px
+
+  @media screen and (max-height: $break-small)
+    height: 100vh

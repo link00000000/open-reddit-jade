@@ -1,0 +1,13 @@
+{
+  "name": "open-reddit",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "sass": "sass --watch sass:public/css",
+    "coffee": "coffee --watch --bare  --output public/js --compile coffee"
+  },
+  "author": "",
+  "license": "ISC"
+}

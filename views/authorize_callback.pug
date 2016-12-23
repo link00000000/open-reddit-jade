@@ -1,0 +1,27 @@
+extends layout.pug
+
+block head
+	title Authorized
+
+block body
+	p Redirecting...
+
+	// Saves token to localStorage.redditToken
+	if redditToken
+		script.
+			token= "#{redditToken}"
+			localStorage.redditToken= token.substring(6, token.length - 6).replace(/&quot;/g, '"');
+	else if token
+		script.
+			token= "#{token}"
+			localStorage.redditToken= token
+
+
+	// Shows token if requested
+	if showToken
+		script.
+			document.location = "/?showToken=1";
+
+	else
+		script.
+			document.location = "/";
