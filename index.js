@@ -3,6 +3,7 @@ var express = require('express');
 var request = require('request');
 var fs = require('fs');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 
 var app = express();
 var server = app.listen(process.env.TESTPORT, function() { console.log("Express listening on port " + process.env.TESTPORT); });
@@ -21,10 +22,12 @@ app.set('views', './views');
 app.set('view engine', 'pug');
 app.use(bodyParser.json());	// to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({extended: true}));	// to support URL-encoded bodies
+app.use(cookieParser()); // to views cookies stored on browser
 
 // Returns homepage
 app.get('/', function(req, res) {
-	res.render('index', {showToken: req.query.showToken});
+	res.render('index', {showToken: req.query.showToken, token: req.cookies.token});
+	console.log(req.cookies.token);
 });
 
 // Returns page to begin authorization process
@@ -47,6 +50,31 @@ app.post('/get_token', function(req, res) {
 // Callback for reddit oauth
 // Retrieves token
 app.get('/authorize_callback', function(req, res) {
+	if(req.query.state.length == STATE_RETURN_LENGTH) {
+		res.render('index', {showToken: true, token: req.query.code});
+	} else {
+		request.post('https:/\/www.reddit.com/api/v1/access_token', {
+			'auth': {
+				'user': JSON.parse(fs.readFileSync( __dirname + '/client.json', 'utf8')).client_id,
+				'pass': JSON.parse(fs.readFileSync( __dirname + '/client.json', 'utf8')).secret
+			},
+			'form' : {
+				'grant_type': 'authorization_code',
+				'code': req.query.code,
+				'redirect_uri': JSON.parse(fs.readFileSync( __dirname + '/client.json', 'utf8')).redirect_uri
+			}
+		}, function(error, response, body) {
+			body = JSON.parse(body);
+			Object.keys(body).forEach(function(key) {
+				res.cookie(key, body[key]);
+			});
+			res.redirect('/');
+		});
+	}
+});
+
+app.post('/authorize_callback', function(req, res) {
+	console.log(req.body.token);
 	request.post('https:/\/www.reddit.com/api/v1/access_token', {
 		'auth': {
 			'user': JSON.parse(fs.readFileSync( __dirname + '/client.json', 'utf8')).client_id,
@@ -54,17 +82,22 @@ app.get('/authorize_callback', function(req, res) {
 		},
 		'form' : {
 			'grant_type': 'authorization_code',
-			'code': req.query.code,
+			'code': req.body.token,
 			'redirect_uri': JSON.parse(fs.readFileSync( __dirname + '/client.json', 'utf8')).redirect_uri
 		}
 	}, function(error, response, body) {
-		if(req.query.state.length == STATE_RETURN_LENGTH) {
-			res.render('authorize_callback', {redditToken: JSON.stringify(body), showToken: true});
-			console.log('GET');
-		} else {
-			res.render('authorize_callback', {redditToken: JSON.stringify(body)});
-		}
+		console.log(body);
+		body = JSON.parse(body);
+		Object.keys(body).forEach(function(key) {
+			res.cookie(key, body[key]);
+		});
+		res.redirect('/');
 	});
+});
+
+// Removes cookie token to logout
+app.post('/logout', function (req, res) {
+	res.clearCookie('access_token');
 });
 
 // Returns page to sub feed

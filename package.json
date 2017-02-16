@@ -9,5 +9,8 @@
     "coffee": "coffee --watch --bare  --output public/js --compile coffee"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.3"
+  }
 }
