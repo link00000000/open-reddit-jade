@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+body {
+  background-color: #87b261; }
+
+#top-bar {
+  background-color: white;
+  color: #38454f;
+  padding: 16px;
+  cursor: pointer;
+  box-shadow: 0 -3px 20px 0px black;
+  position: relative;
+  z-index: 500; }
+  #top-bar #show-subs {
+    font-size: 32px;
+    float: left;
+    transition: transform 200ms; }
+    #top-bar #show-subs.hide {
+      transform: rotate(180deg);
+      transition: transform 200ms; }
+  #top-bar:hover #show-subs {
+    color: #87b261; }
+  #top-bar #subs {
+    font-size: 32px;
+    font-family: "Montserrat";
+    height: 36px;
+    margin: auto;
+    overflow: hidden;
+    user-select: none;
+    transition: height 200ms; }
+    #top-bar #subs.hide {
+      height: auto;
+      transition: height 200ms; }
+      #top-bar #subs.hide #sub-list li:hover {
+        background: #cccccc;
+        border-radius: 2px; }
+    #top-bar #subs #sub-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-align: center; }
+  #top-bar #logout-cta {
+    width: 110px;
+    height: 35px;
+    background-color: #87b261;
+    color: white;
+    line-height: 35px;
+    text-align: center;
+    font-size: 14px;
+    font-family: "Montserrat";
+    cursor: pointer;
+    border-left: 3px solid #7aa852;
+    border-bottom: 3px solid #7aa852;
+    user-select: none;
+    float: right; }
+    #top-bar #logout-cta:hover {
+      background-color: #94ba72; }
+
+#content-wrapper {
+  overflow-y: scroll;
+  height: calc(100vh - 68px);
+  position: fixed;
+  top: 68px; }
+
+#post-wrapper {
+  width: 90%;
+  margin: auto;
+  background-color: white; }
+  #post-wrapper .post {
+    padding: 5px; }
+    #post-wrapper .post .rating {
+      width: 50px;
+      transform: scale(0.7); }
+      #post-wrapper .post .rating .upvote {
+        width: 0;
+        height: 0;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-bottom: 50px solid #cccccc;
+        cursor: pointer;
+        margin: 5px; }
+        #post-wrapper .post .rating .upvote:hover {
+          border-bottom: 50px solid #ff8b60; }
+      #post-wrapper .post .rating .score {
+        cursor: default;
+        font-size: 16px;
+        font-family: "Montserrat";
+        text-align: center; }
+      #post-wrapper .post .rating .downvote {
+        width: 0;
+        height: 0;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 50px solid #cccccc;
+        cursor: pointer;
+        margin: 5px; }
+        #post-wrapper .post .rating .downvote:hover {
+          border-top: 50px solid #9494ff; }
+      #post-wrapper .post .rating.upvoted .upvote {
+        border-bottom: 50px solid #ff8b60; }
+      #post-wrapper .post .rating.downvoted .downvote {
+        border-top: 50px solid #9494ff; }
+    #post-wrapper .post .details {
+      height: 96px;
+      width: 100%;
+      vertical-align: top;
+      padding-left: 8px;
+      position: relative; }
+      #post-wrapper .post .details .title {
+        font-family: "Montserrat";
+        font-size: 16px;
+        color: #38454f;
+        cursor: pointer;
+        margin-bottom: 64px; }
+        #post-wrapper .post .details .title:hover {
+          color: #62798b; }
+      #post-wrapper .post .details .info {
+        position: absolute;
+        bottom: 0; }
+        #post-wrapper .post .details .info .user, #post-wrapper .post .details .info .time {
+          font-family: "Montserrat";
+          font-size: 14px;
+          color: #717e88;
+          margin: 5px 0;
+          cursor: pointer; }
+          #post-wrapper .post .details .info .user:hover, #post-wrapper .post .details .info .time:hover {
+            color: #a8b0b7; }
+      #post-wrapper .post .details .favorite {
+        font-size: 22px;
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+        cursor: pointer; }
+        #post-wrapper .post .details .favorite.ion-android-star-outline {
+          color: #717e88; }
+          #post-wrapper .post .details .favorite.ion-android-star-outline:hover {
+            color: #a8b0b7; }
+        #post-wrapper .post .details .favorite.ion-android-star {
+          color: #f1c40f; }
+          #post-wrapper .post .details .favorite.ion-android-star:hover {
+            color: #f7dc6f; }
+  #post-wrapper .break {
+    width: 100%;
+    height: 1px;
+    background-color: #cccccc; }
+
+/*# sourceMappingURL=feed.css.map */

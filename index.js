@@ -1,17 +1,20 @@
+
+// Global constants
+var STATE_LENGTH = 32; // Length of random state value used when retrieving oauth token
+var STATE_RETURN_LENGTH = 16; // Length of randoms tate value used when retieving oauth token to return
+var PORT = process.env.PORT || 8000;
+
 // Modules
 var express = require('express');
 var request = require('request');
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var pug = require('pug');
 
 var app = express();
-var server = app.listen(process.env.TESTPORT, function() { console.log("Express listening on port " + process.env.TESTPORT); });
+var server = app.listen(PORT, function() { console.log("Express listening on port " + PORT); });
 var io = require('socket.io').listen(server);
-
-// Global constants
-const STATE_LENGTH = 32; // Length of random state value used when retrieving oauth token
-const STATE_RETURN_LENGTH = 16; // Length of randoms tate value used when retieving oauth token to return
 
 // Global variables
 var currentOauthConnections = [];
