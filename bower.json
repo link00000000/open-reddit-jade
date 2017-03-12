@@ -1,0 +1,22 @@
+{
+  "name": "open-reddit",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "link00000000 <crandall.logan@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/link00000000/open-reddit",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Ionicons": "ionicons#^2.0.1",
+    "normalize-css": "normalize.css#^5.0.0",
+    "jquery": "^3.1.1"
+  }
+}
