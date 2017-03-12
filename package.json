@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "npm install; sass --update sass:public/css; coffee --bare --output public/js --compile coffee; gulp bower; node index.js",
     "sass": "sass --watch sass:public/css",
     "coffee": "coffee --watch --bare  --output public/js --compile coffee",
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "bower": "gulp bower-watch"
   },
   "author": "",
   "license": "ISC",
