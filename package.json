@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "sass": "sass --watch sass:public/css",
-    "coffee": "coffee --watch --bare  --output public/js --compile coffee"
+    "coffee": "coffee --watch --bare  --output public/js --compile coffee",
+    "gulp": "gulp"
   },
   "author": "",
   "license": "ISC",
