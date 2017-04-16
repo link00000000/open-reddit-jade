@@ -1,0 +1,259 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+*::selection {
+  background-color: #bbd3a6;
+  color: white; }
+
+body {
+  background-color: #87b261; }
+
+#login-container {
+  z-index: 999999;
+  position: absolute;
+  top: 16px;
+  right: 16px; }
+  #login-container #login-cta, #login-container #logout-cta {
+    width: 110px;
+    height: 35px;
+    background-color: #87b261;
+    color: white;
+    line-height: 35px;
+    text-align: center;
+    font-size: 14px;
+    font-family: "Montserrat";
+    cursor: pointer;
+    border-left: 3px solid #7aa852;
+    border-bottom: 3px solid #7aa852;
+    user-select: none; }
+    #login-container #login-cta:hover, #login-container #logout-cta:hover {
+      background-color: #94ba72; }
+  #login-container #login-wrapper {
+    display: none;
+    width: 305px;
+    height: 456px;
+    padding: 16px;
+    background-color: white;
+    box-shadow: 0px 0px 10px 0px gray;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    box-sizing: border-box; }
+    #login-container #login-wrapper::before, #login-container #login-wrapper::after {
+      content: "";
+      background-color: white;
+      width: 18px;
+      height: 18px;
+      position: absolute;
+      top: -9px;
+      right: 45px;
+      transform: rotate(45deg); }
+    #login-container #login-wrapper.transitioning::before {
+      box-shadow: none; }
+    #login-container #login-wrapper::before {
+      box-shadow: 0px 0px 10px 0px gray;
+      z-index: -500; }
+    #login-container #login-wrapper > div:not(#main) {
+      display: none; }
+      #login-container #login-wrapper > div:not(#main) #get_token {
+        margin-top: 50px; }
+    #login-container #login-wrapper #help #get_token {
+      margin-top: 0 !important; }
+    #login-container #login-wrapper #help > form, #login-container #login-wrapper #help > button {
+      margin-top: 16px; }
+    #login-container #login-wrapper #help #content {
+      margin: 0 8px;
+      font-size: 14px; }
+    #login-container #login-wrapper .back-arrow {
+      font-size: 18px;
+      color: #38454f;
+      width: 20px;
+      position: absolute;
+      text-align: center;
+      cursor: pointer; }
+      #login-container #login-wrapper .back-arrow:hover {
+        color: #87b261; }
+    #login-container #login-wrapper #login-title {
+      font-family: "Montserrat";
+      font-size: 18px;
+      color: #38454f;
+      text-align: center;
+      margin-top: 16px; }
+    #login-container #login-wrapper #divider {
+      width: 100%;
+      height: 2px;
+      background-color: #87b261;
+      margin-top: 8px; }
+    #login-container #login-wrapper #content {
+      margin: 16px 8px;
+      font-family: "Montserrat";
+      font-size: 16px;
+      color: #38454f;
+      line-height: 1.8em;
+      text-align: justify; }
+    #login-container #login-wrapper form button, #login-container #login-wrapper #token_auth-btn {
+      width: 257px;
+      height: 35px;
+      background-color: #87b261;
+      color: white;
+      line-height: 35px;
+      text-align: center;
+      font-size: 14px;
+      font-family: "Montserrat";
+      cursor: pointer;
+      border-left: 3px solid #7aa852;
+      border-bottom: 3px solid #7aa852;
+      border-top: none;
+      border-right: none;
+      margin: 4px 8px;
+      user-select: none;
+      outline: none; }
+      #login-container #login-wrapper form button:hover, #login-container #login-wrapper #token_auth-btn:hover {
+        background-color: #94ba72; }
+    #login-container #login-wrapper form input.text {
+      outline: none;
+      border: none;
+      background-color: none;
+      display: block;
+      border-bottom: 2px solid #87b261;
+      width: 257px;
+      margin: 1px auto;
+      color: #38454f;
+      font-family: "Montserrat";
+      font-size: 14px; }
+    #login-container #login-wrapper form label.text {
+      display: block;
+      font-family: "Montserrat";
+      font-size: 12px;
+      color: #87b261;
+      margin-left: 12px; }
+    #login-container #login-wrapper #login-help {
+      width: 257px;
+      margin-top: 8px; }
+      #login-container #login-wrapper #login-help span, #login-container #login-wrapper #login-help button {
+        display: inline-block;
+        text-align: right;
+        font-family: "Montserrat";
+        font-size: 12px;
+        color: #38454f;
+        cursor: pointer;
+        float: right;
+        background-color: transparent;
+        line-height: normal;
+        border: none;
+        margin: 0;
+        user-select: auto;
+        width: auto;
+        height: auto; }
+        #login-container #login-wrapper #login-help span:hover, #login-container #login-wrapper #login-help button:hover {
+          color: #62798b;
+          background-color: transparent; }
+
+#modal-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 999999998; }
+  #modal-overlay #modal {
+    position: fixed;
+    background-color: white;
+    padding: 50px;
+    z-index: 999999999;
+    box-shadow: 0px 0px 10px 0px #4d4d4d;
+    border-radius: 2px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); }
+    #modal-overlay #modal #modal-wrapper {
+      background-color: #e6e6e6;
+      padding: 50px; }
+      #modal-overlay #modal #modal-wrapper #modal-text {
+        color: #38454f;
+        text-align: center; }
+    #modal-overlay #modal #actions {
+      font-size: 20px;
+      margin-top: 5px;
+      position: absolute;
+      cursor: pointer;
+      color: #38454f; }
+      #modal-overlay #modal #actions * {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        vertical-align: center;
+        margin: 2.5px; }
+      #modal-overlay #modal #actions *:hover {
+        color: #87b261; }
+
+#top {
+  width: 100%;
+  height: 45vh;
+  position: relative;
+  background-color: white; }
+  @media screen and (max-height: 550px) {
+    #top {
+      height: 100vh; } }
+  #top #logged-in {
+    color: #38454f;
+    font-size: 12px;
+    font-family: "Montserrat";
+    position: absolute;
+    top: 16px;
+    left: 16px; }
+  #top #title {
+    font-size: 32px;
+    font-family: "Montserrat";
+    color: #38454f;
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    transform: translateX(-50%);
+    margin-top: 50px; }
+    @media screen and (max-height: 550px) {
+      #top #title {
+        bottom: 50%;
+        transform: translate(-50%, 50%); } }
+    #top #title #main {
+      width: 100%;
+      text-align: center; }
+    #top #title #divider {
+      width: 90px;
+      height: 3px;
+      background-color: #87b261;
+      margin: 20px auto; }
+    #top #title #sub {
+      width: 100%;
+      text-align: center;
+      font-size: 16px;
+      color: #717e88; }
+
+#bottom {
+  width: 100%;
+  position: relative; }
+  #bottom #search {
+    margin: 50px auto;
+    color: white;
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px;
+    font-family: "Montserrat"; }
+    #bottom #search #subreddit {
+      font-size: 18px;
+      background-color: transparent;
+      border: none;
+      border-bottom: 2px solid white;
+      color: white;
+      width: 150px;
+      display: block;
+      border-radius: 0; }
+      #bottom #search #subreddit:focus {
+        outline: none; }
+    #bottom #search label {
+      font-size: 14px; }
+  @media screen and (max-height: 550px) {
+    #bottom {
+      height: 100vh; } }
+
+/*# sourceMappingURL=index.css.map */
